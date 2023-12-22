@@ -10,7 +10,7 @@ const DB_URL = process.env.DB_URL;
 
 // Middleware for CORS
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Origin', 'https://zenchat-aalan.onrender.com');
     next();
 });
 
@@ -24,7 +24,7 @@ const server = app.listen(port, () => {
 // socket.io integration
 const io =  socket(server, {
     cors: {
-        origin: 'http://localhost:3000',
+        origin: 'https://zenchat-aalan.onrender.com',
         methods: ['GET', 'POST'],
     },
 });

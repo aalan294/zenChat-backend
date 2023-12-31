@@ -1,5 +1,7 @@
 const userSchema = require('../Models/userModel')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+require('dotenv')
 
 const register =async(req,res)=>{
     try {
@@ -36,8 +38,11 @@ const login = async(req,res)=>{
        if(!match){
         return res.json({message:"Invalid Password",status:false})
        }
-       delete user.password
-       res.status(201).json({user,status:true})
+       const token = jwt.sign({"username": user.username},process.env.JWT,{expiresIn: '30m'})
+       const userObject = user.toObject()
+       delete userObject.password;
+       userObject.token = token;
+       res.status(201).json({user:userObject,status:true})
     } catch (error) {
         res.status(401).json({message: `${error.message}`,status:false})
     }

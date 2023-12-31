@@ -28,6 +28,13 @@ const io =  socket(server, {
         methods: ['GET', 'POST'],
     },
 });
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@testing
+// const io =  socket(server, {
+//     cors: {
+//         origin: 'http://localhost:3000',
+//         methods: ['GET', 'POST'],
+//     },
+// });
 
 global.onlineUsers = new Map();
 
